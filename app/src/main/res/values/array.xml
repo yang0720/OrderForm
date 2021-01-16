@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="statusspinner">
+        <item>审核中</item>
+        <item>审核成功</item>
+        <item>拒绝</item>
+    </string-array>
+</resources>

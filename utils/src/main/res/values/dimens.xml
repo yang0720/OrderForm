@@ -1,0 +1,12 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="dd_18">18dp</dimen>
+    <dimen name="dd_16">16dp</dimen>
+    <dimen name="dd_14">14dp</dimen>
+    <dimen name="dd_12">12dp</dimen>
+    <dimen name="dd_80">64dp</dimen>
+    <dimen name="menu_size">16dp</dimen>
+    <dimen name="font_12sp">12dp</dimen>
+    <dimen name="dd_pay">14dp</dimen>
+
+</resources>

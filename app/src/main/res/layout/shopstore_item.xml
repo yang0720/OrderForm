@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dd_12"
+    android:id="@+id/ll_click"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    >
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="店铺id:"
+                android:gravity="center"
+                android:textColor="#ff253a4e"
+                android:textSize="14sp"
+                android:layout_marginLeft="@dimen/dd_12"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text=""
+                android:gravity="center"
+                android:textColor="#ff253a4e"
+                android:textSize="14sp"
+                android:id="@+id/tag1"
+                android:layout_marginLeft="@dimen/dd_12"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="创建时间:"
+                android:gravity="center"
+                android:textColor="#ff253a4e"
+                android:textSize="14sp"
+                android:layout_marginLeft="@dimen/dd_12"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text=""
+                android:gravity="center"
+                android:textColor="#ff253a4e"
+                android:textSize="14sp"
+                android:id="@+id/tag2"
+                android:layout_marginLeft="@dimen/dd_12"
+                />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="马甲丁"
+                android:gravity="center"
+                android:id="@+id/tag3"
+                android:textColor="#ff253a4e"
+                android:textSize="14sp"
+                android:layout_marginLeft="@dimen/dd_12"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="13624729290"
+                android:gravity="center"
+                android:textColor="#ff253a4e"
+                android:textSize="14sp"
+                android:id="@+id/tag4"
+                android:layout_marginLeft="@dimen/dd_12"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="上海市闵行区宜山路科技绿洲三期 10号楼"
+                android:textColor="#ff556675"
+                android:layout_marginLeft="@dimen/dd_12"
+                android:textSize="13sp"
+                android:id="@+id/tag5"
+                />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <Button
+            android:id="@+id/tag7"
+            android:layout_width="wrap_content"
+            android:textColor="@color/white"
+            android:layout_height="wrap_content"
+            android:background="@drawable/main_btn_address_commit"
+            android:layout_gravity="center_vertical"
+            android:text="解绑"/>
+        <Button
+            android:id="@+id/tag6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="拉取数据"/>
+    </LinearLayout>
+
+
+</LinearLayout>

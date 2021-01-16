@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:ignore="MissingDefaultResource">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <include layout="@layout/title"/>
+        <View
+            android:layout_width="match_parent"
+            android:background="#F7F9FB"
+            android:layout_height="12dp"/>
+        <EditText
+            android:id="@+id/tag1"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="店铺名称"/>
+        <EditText
+            android:id="@+id/tag2"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:hint="店铺联系人"/>
+        <TextView
+            android:id="@+id/tag3"
+            android:layout_width="match_parent"
+            android:gravity="center_vertical"
+            android:textSize="18sp"
+            android:layout_height="48dp"
+            android:hint="省份、城市、区县"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="4dp"
+            android:background="@color/def_gray"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/btn_commit"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="确定"
+            android:background="@drawable/main_btn_address_commit"
+            android:layout_margin="@dimen/dd_12"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+
+    <!--    -->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

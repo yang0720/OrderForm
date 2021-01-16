@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/view"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+    <!-- 用户输入区域 -->
+    <LinearLayout
+        android:id="@+id/dialog_tag2"
+        android:layout_margin="0dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include layout="@layout/lines" />
+        </LinearLayout>
+
+        <include layout="@layout/lines" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:lines="1"
+                android:text="备注"
+                android:textColor="@color/t3"
+                android:textSize="14dp" />
+            <EditText
+                android:id="@+id/dialog_remake"
+                android:layout_margin="5dp"
+                android:background="@drawable/search_border"
+                android:paddingLeft="10dp"
+
+                android:layout_weight="1"
+                android:inputType="number"
+                android:imeOptions="actionDone"
+                android:text=""
+                android:lines="1"
+                android:ellipsize="end"
+                android:textSize="14dp"
+                android:textColorHint="@color/right_text"
+                android:textColor="@color/right_text"
+                android:gravity="center_vertical"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+        <include layout="@layout/lines" />
+
+        <LinearLayout
+            android:id="@+id/dialog_tag1"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/dd_12"
+            android:layout_height="100dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:lines="1"
+                android:text="快递单号"
+                android:textColor="@color/t3"
+                android:textSize="14dp" />
+
+            <EditText
+                android:id="@+id/expnumber"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/text_active_bg"
+                android:hint="#请输入快递单号，多个快递单号用回车键换行"/>
+        </LinearLayout>
+        <include layout="@layout/lines" />
+        <Button
+            android:id="@+id/dialog_tag_commit"
+            android:layout_margin="20dp"
+            android:text="提交"
+            style="@style/commit_btn"/>
+    </LinearLayout>
+</LinearLayout>

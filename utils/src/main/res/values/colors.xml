@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 状态栏 -->
+    <color name="baseColorPrimaryDark">#1b3847</color>
+
+    <!-- 5.0主题颜色 -->
+
+
+    <color name="baseColorAccent">@color/dc_bg</color>
+
+    <!-- 5.0背景颜色 -->
+
+
+    <color name="colorBackground">#FFFFFF</color>
+
+    <color name="transparent">#00000000</color>
+
+    <color name="right_text">#576b95</color>
+
+    <color name="def_bg">#03a0df</color>
+
+    <!-- 项目主题配色 40a291-->
+
+
+    <color name="dc_bg">@color/def_bg</color>
+
+    <color name="dc_bg_pressed">#005197</color>
+
+    <!-- 03a0df -->
+
+
+    <color name="dc_1">#111111</color>
+
+    <color name="dc_3">#333333</color>
+
+    <color name="dc_6">#666666</color>
+
+    <color name="dc_9">#999999</color>
+
+    <color name="dc_f">#FFFFFF</color>
+
+    <color name="bg">#eeeeee</color>
+
+    <color name="white">#FFFFFF</color>
+
+    <color name="t1">#111111</color>
+
+    <color name="t3">#333333</color>
+
+    <color name="t6">#666666</color>
+
+    <color name="t9">#999999</color>
+
+    <!-- 细线 -->
+
+
+    <color name="dc_line">#d9d9d9</color>
+
+    <!-- View 背景 -->
+
+
+    <color name="dc_v_bg">#e6e3e3</color>
+
+    <color name="dc_right_arrow">#8f8f8f</color>
+
+    <color name="dc_right_text">#576b95</color>
+
+    <!-- list 颜色 -->
+
+
+    <color name="dc_item_pre">#d6d6d6</color>
+
+    <color name="dc_item_nor">#FFFFFF</color>
+
+    <color name="pressed">@color/def_bg</color>
+
+    <color name="enable">#bfbfbf</color>
+
+    <color name="def_gray">#9c9c9c</color>
+
+    <color name="def_red">#FF0000</color>
+
+    <color name="def_table_item_pre">#d6d6d6</color>
+
+    <color name="def_table_item_foc">#FFFFFF</color>
+
+    <color name="def_font_nor">#070707</color>
+
+    <color name="def_font_pre">#8f8f94</color>
+
+    <color name="def_font_ena">#666666</color>
+
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#008577</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="tans">#00000000</color>
+    <color name="orange">#EE6413</color>
+    <color name="black">#ff000000</color>
+    <color name="colorBarText">#F0F5E5</color>
+
+    <color name="orderTextColor">#c0787f</color>
+    <!-- 绿色 -->
+    <color name="green">#008000</color>
+    <!-- 黄色 -->
+    <color name="yellow">#FFFF00</color>
+
+    <color name="cornsilk">#FFF8DC</color>
+    <color name="checkboxhuang">#FF7C34</color>
+    <color name="deeppink">#FF1493</color>
+    <color name="text_channel_color_red_day">#d83b36</color>
+    <color name="orchid">#DA70D6</color>
+    <color name="purple">#800080</color>
+
+    <color name="darker_gray">#aaa</color>
+    <color name="btn1">#69B056</color>
+    <color name="btn2">#FFD52B</color>
+    <color name="btn3">#CE413A</color>
+    <color name="btn4">#3F7FE4</color>
+    <color name="btn5">#A4C2F6</color>
+    <color name="btn6">#F78AE0</color>
+    <color name="btn7">#6638F0</color>
+    <color name="btn8">#5CD0FA</color>
+    <color name="btn9">#D93C33</color>
+    <color name="btn10">#D05C3C</color>
+    <color name="btn11">#985F9C</color>
+    <color name="btn12">#F6C150</color>
+    <color name="btn13">#4681F4</color>
+    <color name="btn14">#5EA379</color>
+    <color name="shape1">#5d8df7</color>
+    <color name="shape2">#5EB9F8</color>
+    <color name="shape3">#5CC2F8</color>
+
+    <color name="cool_green_normal">#4caf50</color>
+    <color name="cool_green_shade">#81c784</color>
+
+    <color name="tab_bottom_normal">#999999</color>
+    <color name="tab_bottom_selected">#46c01b</color>
+    <color name="github_color">#24292E</color>
+
+    <color name="ripple_color_f2f2f2">#33f2f2f2</color>
+</resources>

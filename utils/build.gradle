@@ -1,0 +1,117 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
+
+
+    defaultConfig {
+        minSdkVersion 18
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters 'armeabi'    //只生成armv7的so
+        }
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            aaptOptions.cruncherEnabled = false
+            aaptOptions.useNewCruncher = false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+
+dependencies {
+
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "androidx.appcompat:appcompat:$supportLibraryVersion"
+//    api 'com.android.support:appcompat-v7:28.0.0'
+    api 'com.android.support:design:28.0.0'
+    implementation 'com.android.support:multidex:1.0.3'
+    //下拉刷新，上拉加载跟多 https://github.com/captainbupt/android-Ultra-Pull-To-Refresh-With-Load-More
+    api 'in.srain.cube:ptr-load-more:1.0.6'
+    //material-dialogs  https://github.com/afollestad/material-dialogs
+    api 'com.afollestad.material-dialogs:core:0.9.4.6'
+    api 'org.greenrobot:eventbus:3.1.1'
+    //IOS SwitchButton https://github.com/zcweng/SwitchButton
+    //compile 'com.github.zcweng:switch-button:0.0.3@aar'
+    //Android Button，变成加载进度条 https://github.com/leandroBorgesFerreira/LoadingButtonAndroid
+    //compile 'br.com.simplepass:loading-button-android:1.8.0'
+    api 'me.drakeet.materialdialog:library:1.3.1'
+    //Android仿iOS的弹窗控件几乎完美还原iOS 的 AlertViewController
+    api 'com.bigkoo:alertview:1.0.3'
+    //输入检测错误提示
+    api 'com.rengwuxian.materialedittext:library:2.1.4'
+    //Material Design2.3以上一个5.0的个性进度条
+    api 'com.pnikosis:materialish-progress:1.7'
+    //PhotoView 图片浏览缩放控件
+    api 'com.bm.photoview:library:1.4.1'
+    //图片加载库，专注于流畅的滚动 https://github.com/square/picasso
+    api 'com.squareup.picasso:picasso:2.5.2'
+    //网络请求框架
+    api 'com.squareup.okhttp3:okhttp:3.6.0'
+    api 'com.zhy:okhttputils:2.6.2'
+    //辅助类、工具类的集合bitmap处理，文件操作，加密存储器，shell命令，静默安装，计数器，均值器，吐司，日志，校验，提示，网络监测等基础功能，
+    //以及一些Base64、MD5、Hex、Byte、Number、Dialog、Filed、Class、Package、Telephone、Random等工具类。
+//    api 'com.luffykou:android-common-utils:1.1.3'
+    //自定义圆形ImageView
+    api 'de.hdodenhof:circleimageview:2.1.0'
+    //Luban(鲁班图片压缩)最接近微信朋友圈的图片压缩算法  https://github.com/Curzibn/Luban
+    api 'top.zibin:Luban:1.1.8'
+    //二维码条形码扫描
+//    api 'cn.bingoogolapple:bga-qrcode-zxing:3.3.0'
+//    api 'cn.bingoogolapple:bga-qrcode-zbar:1.2.1'
+    //选择照片裁剪
+    api 'com.github.yalantis:ucrop:2.2.1-native'
+    //微信选择照片
+    api 'com.github.lovetuzitong:MultiImageSelector:1.2'
+    //Android GIF
+    api 'pl.droidsonroids.gif:android-gif-drawable:1.2.12'
+    //带圆角的图片 https://github.com/vinc3m1/RoundedImageView
+    api 'com.makeramen:roundedimageview:2.3.0'
+    //日期选择控件
+    api 'com.github.codbking:PickTime:v1.0.1'
+    api 'com.contrarywind:Android-PickerView:4.1.9'
+    api 'pub.devrel:easypermissions:1.0.1'
+    api 'com.youth.banner:banner:1.4.10'
+    // https://mvnrepository.com/artifact/com.google.code.gson/gson
+    api 'com.google.code.gson:gson:2.8.4'
+    api 'com.vivian.widgets:TimeLineItemDecoration:1.5'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    //列表侧滑
+    api 'com.yanzhenjie.recyclerview:x:1.3.2'
+    //https://github.com/yanzhenjie/SwipeRecyclerView
+    //拼音
+    api 'com.belerweb:pinyin4j:2.5.0'
+    //高德地图定位
+    api 'com.amap.api:location:latest.integration'
+    //zxing
+    api 'com.king.zxing:zxing-lite:1.1.9-androidx'
+
+    api 'com.just.agentweb:agentweb-androidx:4.1.4' // (必选)
+    api 'com.just.agentweb:filechooser-androidx:4.1.4'// (可选)
+    api 'com.download.library:downloader-androidx:4.1.4'// (可选)
+
+    api 'com.gyf.immersionbar:immersionbar:3.0.0'
+    //https://github.com/Justson/AgentWeb  好用的webview控件
+//    api 'com.github.goyourfly:MultiSelectAdapter:lastVersion'
+}
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
+}

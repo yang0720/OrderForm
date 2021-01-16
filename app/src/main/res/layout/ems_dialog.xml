@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/view"
+    android:layout_height="wrap_content">
+    <!-- 用户输入区域 -->
+    <LinearLayout
+        android:id="@+id/dialog_tag2"
+        android:layout_margin="0dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include layout="@layout/lines" />
+        </LinearLayout>
+
+        <include layout="@layout/lines" />
+
+        <include layout="@layout/lines" />
+
+        <LinearLayout
+            android:id="@+id/dialog_tag1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:lines="1"
+                android:text="订单编号"
+                android:textColor="@color/t3"
+                android:textSize="14dp" />
+
+            <EditText
+                android:id="@+id/zhongjianshang"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/search_border"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:lines="1"
+                android:paddingLeft="10dp"
+                android:text=""
+                android:textColor="@color/right_text"
+                android:textColorHint="@color/right_text"
+                android:textSize="14dp" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="删除"/>
+        </LinearLayout>
+
+
+        <include layout="@layout/lines" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    xmlns:wheel="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/material_design_dialog_bg"
+    android:padding="5dp"
+    android:orientation="vertical">
+    <com.pnikosis.materialishprogress.ProgressWheel
+        android:id="@+id/progress_wheel"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        wheel:matProg_barColor="@color/colorAccent"
+        wheel:matProg_progressIndeterminate="true" />
+    <TextView
+        android:id="@+id/material_design_dialog_text"
+        android:textSize="16dp"
+        android:textColor="@color/dc_f"
+        android:layout_marginTop="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="请求加载中..." />
+</LinearLayout>

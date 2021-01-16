@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/main_home"
+        android:icon="@drawable/main_icon1_selector"
+        android:title="首页"/>
+
+    <item
+        android:id="@+id/main_uli_circle"
+        android:icon="@drawable/main_icon2_selector"
+        android:title="订单"/>
+    <item
+        android:id="@+id/main_shop"
+        android:icon="@drawable/main_icon3_selector"
+        android:title="提现" />
+
+    <item
+        android:id="@+id/main_live"
+        android:icon="@drawable/main_icon5_selector"
+        android:title="我的" />
+
+
+</menu>

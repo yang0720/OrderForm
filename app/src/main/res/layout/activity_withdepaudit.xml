@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".shop.MyShopStoreActivity">
+    <!--    -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/tag1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_back_icon"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="提现列表"/>
+
+        </LinearLayout>
+        <include layout="@layout/lines_mat"/>
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:entries="@array/statusspinner"
+            android:id="@+id/tag7"/>
+        <in.srain.cube.views.ptr.PtrClassicFrameLayout
+            android:id="@+id/ptrFrame"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/bg">
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_margin="12dp"
+                android:id="@+id/recycleview"
+                android:layout_height="match_parent"/>
+        </in.srain.cube.views.ptr.PtrClassicFrameLayout>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
