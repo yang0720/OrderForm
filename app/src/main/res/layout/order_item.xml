@@ -54,7 +54,6 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-
             android:layout_height="30dp"
             android:orientation="horizontal">
             <TextView
@@ -127,7 +126,6 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
@@ -151,5 +149,9 @@
                 android:layout_marginLeft="@dimen/dd_12"
                 />
         </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/itemrecyclerview"/>
     </LinearLayout>
 </LinearLayout>

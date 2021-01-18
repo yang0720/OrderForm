@@ -102,12 +102,25 @@ public class ActiveOne extends BaseFragment implements NoDismissDialog.OnCenterI
             @Override
             public void fadanClick(int position) {
 //                tipsDialog(getActivity(),position).show();
-                dingDialogShow();
+//                dingDialogShow();
+                fadanDialog(getActivity(),position).show();
             }
 
             @Override
             public void fukuanClick(int position) {
                 fukuanDialog(getActivity(),position).show();
+            }
+
+            @Override
+            public void addExpNoClick(int position, int itemPosition) {
+                //给订单添加物流单号
+                addExpNoData(position,itemPosition);
+            }
+
+            @Override
+            public void changeExpNoClick(int position, int itemPosition) {
+                //修改物流单号
+                changeExpNoData(position,itemPosition);
             }
         };
         list.clear();
@@ -140,18 +153,28 @@ public class ActiveOne extends BaseFragment implements NoDismissDialog.OnCenterI
             }
         });
     }
+
+    private void changeExpNoData(int position, int itemPosition) {
+        changeExpNoDialog(getActivity(),position,itemPosition).show();
+    }
+
+    private void addExpNoData(int position, int itemPosition) {
+        tipsDialog(getActivity(),position,itemPosition).show();
+    }
+
     LinearLayout dialog_tag2;
     private NoDismissDialog myDialog;
     private TextView order_logist;
     private EditText expnumber;
     private void dingDialogShow() {
-        myDialog = new NoDismissDialog(getActivity(),R.layout.beizhu_dialog,new int[]{R.id.dialog_tag_commit});
-        //绑定点击事件
-        dialog_tag2 = myDialog.findViewById(R.id.dialog_tag2);
+//        myDialog = new NoDismissDialog(getActivity(),R.layout.beizhu_dialog,new int[]{R.id.dialog_tag_commit});
+//        //绑定点击事件
+//        dialog_tag2 = myDialog.findViewById(R.id.dialog_tag2);
+//
+//        myDialog.setOnCenterItemClickListener((NoDismissDialog.OnCenterItemClickListener) this);
+//        //显示
+//        myDialog.show();
 
-        myDialog.setOnCenterItemClickListener((NoDismissDialog.OnCenterItemClickListener) this);
-        //显示
-        myDialog.show();
     }
 
     @Override
@@ -195,6 +218,7 @@ public class ActiveOne extends BaseFragment implements NoDismissDialog.OnCenterI
                 .url(getUrl("/api/shop/orderList"))
                 .addParams("page",page+"")
                 .addParams("keyword",keyword)
+                .addParams("status","99")
                 .addParams("page_size",page_num+"")
                 .addHeader("token", getToken())
                 .build()
@@ -240,16 +264,16 @@ public class ActiveOne extends BaseFragment implements NoDismissDialog.OnCenterI
         dialog_tag2.addView(view);
     }
 
-    private MaterialDialog tipsDialog(Context context,int position) {
+    private MaterialDialog tipsDialog(Context context,int position,int itemposition) {
         //订单备注
 
         MaterialDialog tipsDialog = new MaterialDialog.Builder(context)
-                .title("订单备注")
-                .input("请输入备注", "", new MaterialDialog.InputCallback() {
+                .title("物流单号")
+                .input("请输入物流单号", "", new MaterialDialog.InputCallback() {
                     @Override
                     public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
                         Log.d("input", input.toString());
-//                        postStatusOrder(dialog,input.toString(),position);
+                        addExpNoOrder(dialog,input.toString(),position,itemposition);
                     }
                 })
                 .cancelable(true)
@@ -272,6 +296,144 @@ public class ActiveOne extends BaseFragment implements NoDismissDialog.OnCenterI
                 .build();
         return tipsDialog;
 
+    }
+
+    private MaterialDialog fadanDialog(Context context,int position) {
+        //订单备注
+
+        MaterialDialog tipsDialog = new MaterialDialog.Builder(context)
+                .title("发单备注")
+                .input("请输入发单备注", "", new MaterialDialog.InputCallback() {
+                    @Override
+                    public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
+                        Log.d("input", input.toString());
+                        fadanCommit(dialog,input.toString(),position);
+                    }
+                })
+                .cancelable(true)
+                .positiveText("确定")
+                .negativeText("取消")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+
+                    }
+                })
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        dialog.dismiss();
+                        dialog = null;
+
+                    }
+                })
+                .build();
+        return tipsDialog;
+
+    }
+
+    private void fadanCommit(MaterialDialog dialog, String remake, int position) {
+        dialog();
+        try {
+            OkHttpUtils.post()
+                    .url(getUrl("/api/shop/payOrder"))
+                    .addParams("note",remake)
+                    .addParams("ordersn",list.get(position).getString("ordersn"))
+                    .addHeader("token", getToken())
+                    .build()
+                    .execute(new MyCallBack() {
+                        @Override
+                        public void onSuccess(JSONObject result) {
+                            dialog.dismiss();
+                            list.clear();
+                            getActiveData();
+                        }
+                    });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private MaterialDialog changeExpNoDialog(Context context,int position,int itemposition) {
+        //订单备注
+
+        MaterialDialog tipsDialog = new MaterialDialog.Builder(context)
+                .title("物流单号")
+                .input("请输入物流单号", "", new MaterialDialog.InputCallback() {
+                    @Override
+                    public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
+                        Log.d("input", input.toString());
+                        changeExpNoOrder(dialog,input.toString(),position,itemposition);
+                    }
+                })
+                .cancelable(true)
+                .positiveText("确定")
+                .negativeText("取消")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+
+                    }
+                })
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        dialog.dismiss();
+                        dialog = null;
+
+                    }
+                })
+                .build();
+        return tipsDialog;
+
+    }
+
+    private void addExpNoOrder(MaterialDialog dialog, String expStr, int position, int itemposition) {
+        dialog();
+        try {
+            OkHttpUtils.post()
+                    .url(getUrl("/api/shop/faDan"))
+                    .addParams("express_no",expStr)
+                    .addParams("item_id",list.get(position).getJSONArray("items").getJSONObject(itemposition).getString("item_id"))
+                    .addParams("variation_id",list.get(position).getJSONArray("items").getJSONObject(itemposition).getString("variation_id"))
+                    .addParams("ordersn",list.get(position).getString("ordersn"))
+                    .addHeader("token", getToken())
+                    .build()
+                    .execute(new MyCallBack() {
+                        @Override
+                        public void onSuccess(JSONObject result) {
+                            dialog.dismiss();
+                            list.clear();
+                            getActiveData();
+                        }
+                    });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void changeExpNoOrder(MaterialDialog dialog, String expStr, int position, int itemposition) {
+        dialog();
+        try {
+            OkHttpUtils.post()
+                    .url(getUrl("/api/shop/editpress"))
+                    .addParams("express_no",expStr)
+                    .addParams("item_id",list.get(position).getJSONArray("items").getJSONObject(itemposition).getString("item_id"))
+                    .addParams("variation_id",list.get(position).getJSONArray("items").getJSONObject(itemposition).getString("variation_id"))
+                    .addParams("ordersn",list.get(position).getString("ordersn"))
+                    .addHeader("token", getToken())
+                    .build()
+                    .execute(new MyCallBack() {
+                        @Override
+                        public void onSuccess(JSONObject result) {
+                            dialog.dismiss();
+                            list.clear();
+                            getActiveData();
+                        }
+                    });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     private MaterialDialog fukuanDialog(Context context,int position) {

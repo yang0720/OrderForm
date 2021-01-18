@@ -96,6 +96,16 @@ public class ActiveThree extends BaseFragment {
             public void fukuanClick(int position) {
                 fukuanDialog(getActivity(),position).show();
             }
+
+            @Override
+            public void addExpNoClick(int position, int itemPosition) {
+
+            }
+
+            @Override
+            public void changeExpNoClick(int position, int itemPosition) {
+
+            }
         };
         list.clear();
         getActiveData();

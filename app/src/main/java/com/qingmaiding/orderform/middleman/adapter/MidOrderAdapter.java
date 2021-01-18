@@ -8,14 +8,18 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.qingmaiding.orderform.R;
+import com.qingmaiding.orderform.shop.adapter.OrderGoodsAdapter;
 import com.qingmaiding.orderform.utils.TimeUtils;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class MidOrderAdapter extends RecyclerView.Adapter<MidOrderAdapter.ViewHolder>{
@@ -26,6 +30,7 @@ public abstract class MidOrderAdapter extends RecyclerView.Adapter<MidOrderAdapt
         View llClick;
         TextView tag1,tag2,tag3,tag4,tag5;
         Button tag6,tag7;
+        RecyclerView itemRecyclerview;
 
         public ViewHolder (View view)
         {
@@ -38,6 +43,7 @@ public abstract class MidOrderAdapter extends RecyclerView.Adapter<MidOrderAdapt
             tag5 = (TextView) view.findViewById(R.id.tag5);
             tag6 = (Button) view.findViewById(R.id.tag6);
             tag7 = (Button) view.findViewById(R.id.tag7);
+            itemRecyclerview = (RecyclerView)view.findViewById(R.id.itemrecyclerview);
         }
     }
 
@@ -98,6 +104,24 @@ public abstract class MidOrderAdapter extends RecyclerView.Adapter<MidOrderAdapt
                 String fcStr = mActiveList.get(position).getString("zjs_fc_note").equals("null")?"无":mActiveList.get(position).getString("zjs_fc_note");
                 holder.tag5.setText(faStr.equals("null")?"无":faStr + "||" + bhStr + "||" +fcStr);
             }
+            List<JSONObject> goodsList = new ArrayList<>();
+            JSONArray goodsJa = mActiveList.get(position).getJSONArray("items");
+            for (int i = 0; i < goodsJa.length(); i++) {
+                goodsList.add(goodsJa.getJSONObject(i));
+            }
+            MidOrderGoodsAdapter orderGoodsAdapter = new MidOrderGoodsAdapter(goodsList,mContext,mActiveList.get(position).getString("zjs_status")) {
+                @Override
+                public void itemClick(int position) {
+
+                }
+
+                @Override
+                public void signOrderSNClick(int itemposition) {
+//                    changeExpNoClick(position,itemposition);
+                }
+            };
+            holder.itemRecyclerview.setLayoutManager(new GridLayoutManager(mContext,1));
+            holder.itemRecyclerview.setAdapter(orderGoodsAdapter);
 
         } catch (JSONException e) {
             e.printStackTrace();

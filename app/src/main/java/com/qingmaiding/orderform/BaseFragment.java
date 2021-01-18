@@ -55,6 +55,7 @@ public abstract class BaseFragment extends Fragment {
 
     protected String getUrl(String url){
         String ip = PrefMethed.getIPAddress(getActivity());
+        Log.e("22222222", "https://"+ip+url );
         return "https://"+ip+url;
     }
 

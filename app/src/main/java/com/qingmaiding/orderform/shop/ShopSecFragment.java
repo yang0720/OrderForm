@@ -31,7 +31,7 @@ public class ShopSecFragment extends BaseFragment {
     TabLayout tabs;
     private LafViewPageAdapter viewPagerAdapter;
     private List<Fragment> fragments=new ArrayList<>();
-    private String[] titles=new String[]{"全部","待付款","已发出","已驳回"};
+    private String[] titles=new String[]{"全部","待发单","已发出","已完成"};
     @Override
     protected int setLayoutResourceID() {
         return R.layout.fragment_sec;

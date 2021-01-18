@@ -165,5 +165,9 @@
                 android:layout_marginLeft="@dimen/dd_12"
                 />
         </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/itemrecyclerview"/>
     </LinearLayout>
 </LinearLayout>
