@@ -13,12 +13,14 @@ import androidx.annotation.NonNull;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.alpamayo.utils.utils.PrefMethed;
 import com.qingmaiding.orderform.BaseFragment;
 import com.qingmaiding.orderform.R;
 import com.qingmaiding.orderform.platform.WidhDepAuditActivity;
 import com.qingmaiding.orderform.shop.MyExpHisActivity;
 import com.qingmaiding.orderform.shop.MyInfoActivity;
 import com.qingmaiding.orderform.shop.MyShopStoreActivity;
+import com.qingmaiding.orderform.ui.login.MyLoginActivity;
 import com.zhy.http.okhttp.OkHttpUtils;
 
 import org.json.JSONException;
@@ -106,7 +108,13 @@ public class PlatFourFragment extends BaseFragment {
     TextView tag3_text;
     @BindView(R.id.tag4_text)
     TextView tag4_text;
-
+    @OnClick(R.id.logout)
+    public void logout(){
+        PrefMethed.settoken(getActivity(),"");
+        PrefMethed.setuser_info(getActivity(),"");
+        startActivity(new Intent(getActivity(), MyLoginActivity.class));
+        getActivity().finish();
+    }
     private void getScoreData() {
         dialog();
         OkHttpUtils.get()
@@ -157,6 +165,13 @@ public class PlatFourFragment extends BaseFragment {
         //提现审核
 //        addMidDialog();
         startActivity(new Intent(getActivity(), WidhDepAuditActivity.class));
+    }
+    @OnClick(R.id.tag7)
+    public void tag7(){
+        //提现审核
+//        addMidDialog();
+//        startActivity(new Intent(getActivity(), WidhDepAuditActivity.class));
+        tongzhiDialog(getActivity()).show();
     }
     private String phoneStr,passwordStr;
     private void addMidDialog() {
@@ -352,6 +367,56 @@ public class PlatFourFragment extends BaseFragment {
                 });
     }
 
+    private MaterialDialog tongzhiDialog(Context context) {
+
+        MaterialDialog tipsDialog = new MaterialDialog.Builder(context)
+                .title("发布通知")
+                .input("输入发布的通知", "", new MaterialDialog.InputCallback() {
+                    @Override
+                    public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
+                        Log.d("input", input.toString());
+                        tongzhiSetting(input.toString());
+                    }
+                })
+                .cancelable(true)
+                .positiveText("确定")
+                .negativeText("取消")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+
+                    }
+                })
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        dialog.dismiss();
+                        dialog = null;
+
+                    }
+                })
+                .build();
+        return tipsDialog;
+
+    }
+    private void tongzhiSetting(String jifenStr) {
+        dialog();
+        OkHttpUtils.post()
+                .url(getUrl("/api/user/news"))
+                .addParams("content",jifenStr)
+                .addHeader("token", getToken())
+                .build()
+                .execute(new MyCallBack() {
+                    @Override
+                    public void onSuccess(JSONObject result) {
+                        try {
+                            toastShort(result.getString("msg"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
     private MaterialDialog jifenDialog(Context context) {
 
         MaterialDialog tipsDialog = new MaterialDialog.Builder(context)

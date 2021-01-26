@@ -137,6 +137,7 @@ public class PlatOne extends BaseFragment {
         OkHttpUtils.post()
                 .url(getUrl("/api/shop/orderList"))
                 .addParams("page",page+"")
+                .addParams("status","0")
                 .addParams("keyword",keyword)
                 .addParams("page_size",page_num+"")
                 .addHeader("token", getToken())

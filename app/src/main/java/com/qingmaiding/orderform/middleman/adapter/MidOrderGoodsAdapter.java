@@ -68,7 +68,13 @@ public abstract class MidOrderGoodsAdapter extends RecyclerView.Adapter<MidOrder
             holder.tag6.setText(mActiveList.get(position).getString("express_no"));
             if(mActiveList.get(position).getString("status").equals("0")){
                 //未签收
-                holder.tag7.setVisibility(View.VISIBLE);
+                //商家已经发单才显示签收
+                if(mSjstatus.equals("1")){
+                    holder.tag7.setVisibility(View.VISIBLE);
+                }else{
+                    holder.tag7.setVisibility(View.GONE);
+                }
+
             }else{
                 //已经签收的单号
                 holder.tag7.setVisibility(View.GONE);

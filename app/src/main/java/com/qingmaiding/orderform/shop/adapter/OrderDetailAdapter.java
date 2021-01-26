@@ -5,14 +5,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.qingmaiding.orderform.R;
 import com.qingmaiding.orderform.utils.TimeUtils;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,6 +28,7 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
     static class ViewHolder extends RecyclerView.ViewHolder{
         View llClick;
         TextView tag1,tag2,tag3,tag4,tag5,tag6,tag7,tag8,tag9;
+        ImageView tag10;
 
         public ViewHolder (View view)
         {
@@ -39,6 +43,7 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
             tag7 = (TextView) view.findViewById(R.id.tag7);//重量  weight
             tag8 = (TextView) view.findViewById(R.id.tag8);//附加处理  is_add_on_deal
             tag9 = (TextView) view.findViewById(R.id.tag9);//是否是主项目  is_main_item
+            tag10 = (ImageView) view.findViewById(R.id.tag10);
         }
     }
 
@@ -66,6 +71,13 @@ public class OrderDetailAdapter extends RecyclerView.Adapter<OrderDetailAdapter.
             holder.tag7.setText(mActiveList.get(position).getString("weight"));
             holder.tag8.setText(mActiveList.get(position).getString("is_add_on_deal"));
             holder.tag9.setText(mActiveList.get(position).getString("is_main_item"));
+            JSONArray ja = mActiveList.get(position).getJSONArray("image");
+            String goodsImageURL = "";
+            if (ja.length()>0){
+                goodsImageURL = ja.get(0).toString();
+            }
+
+            Glide.with(mContext).load(goodsImageURL).into(holder.tag10);//图片
         } catch (JSONException e) {
             e.printStackTrace();
         }

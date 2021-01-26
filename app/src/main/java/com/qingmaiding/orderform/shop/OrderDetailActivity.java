@@ -173,7 +173,7 @@ public class OrderDetailActivity extends BaseActivity {
                                 }
 //                                tag16.setText(result.getJSONObject("data").getString("goods_to_declare"));
                                 tag17.setText(result.getJSONObject("data").getString("message_to_seller"));
-                                tag18.setText(result.getJSONObject("data").getString("note"));
+//                                tag18.setText(result.getJSONObject("data").getString("note"));
                                 tag19.setText(TimeUtils.getCurrentTime(result.getJSONObject("data").getString("note_update_time")));
                                 tag20.setText(TimeUtils.getCurrentTime(result.getJSONObject("data").getString("create_time")));
                                 if(!result.getJSONObject("data").getString("pay_time").equals("null")){
@@ -184,7 +184,7 @@ public class OrderDetailActivity extends BaseActivity {
                                     list.add(ja.getJSONObject(i));
                                 }
                                 adapter.notifyDataSetChanged();
-                                tag22.setText(result.getJSONObject("data").getString("dropshipper"));
+//                                tag22.setText(result.getJSONObject("data").getString("dropshipper"));
                                 tag23.setText(result.getJSONObject("data").getString("credit_card_number"));
                                 tag24.setText(result.getJSONObject("data").getString("buyer_username"));
                                 tag25.setText(result.getJSONObject("data").getString("dropshipper_phone"));

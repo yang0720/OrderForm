@@ -14,10 +14,6 @@ import com.qingmaiding.orderform.BaseFragment;
 import com.qingmaiding.orderform.R;
 import com.qingmaiding.orderform.shop.EventMessage;
 import com.qingmaiding.orderform.shop.adapter.LafViewPageAdapter;
-import com.qingmaiding.orderform.shop.fragment.ActiveFour;
-import com.qingmaiding.orderform.shop.fragment.ActiveOne;
-import com.qingmaiding.orderform.shop.fragment.ActiveThree;
-import com.qingmaiding.orderform.shop.fragment.ActiveTwo;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -35,7 +31,7 @@ public class PlatThreeFragment extends BaseFragment {
     TabLayout tabs;
     private LafViewPageAdapter viewPagerAdapter;
     private List<Fragment> fragments=new ArrayList<>();
-    private String[] titles=new String[]{"全部","待付款","未发出","已发出","已驳回"};
+    private String[] titles=new String[]{"全部","待发单","待签收","待发出","已完成"};
     @Override
     protected int setLayoutResourceID() {
         return R.layout.fragment_sec;

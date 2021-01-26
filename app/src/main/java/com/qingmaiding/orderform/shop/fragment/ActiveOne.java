@@ -344,6 +344,11 @@ public class ActiveOne extends BaseFragment implements NoDismissDialog.OnCenterI
                     .execute(new MyCallBack() {
                         @Override
                         public void onSuccess(JSONObject result) {
+                            try {
+                                toastShort(result.getString("msg"));
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
                             dialog.dismiss();
                             list.clear();
                             getActiveData();

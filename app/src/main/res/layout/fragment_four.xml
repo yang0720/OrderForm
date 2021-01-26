@@ -132,12 +132,16 @@
                 android:gravity="center_vertical"
                 android:textSize="@dimen/dd_14"
                 android:textColor="@color/def_red"/>
-
             <ImageView
                 android:src="@drawable/arrow_right"
                 android:layout_width="25dp"
                 android:layout_height="25dp" />
         </LinearLayout>
+        <Button
+            android:id="@+id/logout"
+            android:layout_margin="20dp"
+            android:text="退出登录"
+            style="@style/commit_btn"/>
     </LinearLayout>
 
 

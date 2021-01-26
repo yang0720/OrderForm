@@ -62,18 +62,14 @@ public class MidOne extends BaseFragment {
             }
 
             @Override
-            public void qianshouClick(int position) {
-                tipsDialog(getActivity(),position,"1").show();
-            }
-
-            @Override
-            public void bohuiClick(int position) {
-                tipsDialog(getActivity(),position,"2").show();
-            }
-
-            @Override
             public void fachuClick(int position) {
                 fachuDialog(getActivity(),position).show();
+            }
+
+            @Override
+            public void signExpNoClick(int position, int itemposition) {
+//                signExpNoData(position,itemposition);
+                signExpNoData(position,itemposition);
             }
         };
         getActiveData();
@@ -105,6 +101,31 @@ public class MidOne extends BaseFragment {
             }
         });
     }
+
+    private void signExpNoData(int position, int itemposition) {
+        dialog();
+        try {
+            Log.e("yang","item_id:" +list.get(position).getJSONArray("items").getJSONObject(itemposition).getString("item_id")+"variation_id:"+list.get(position).getJSONArray("items").getJSONObject(itemposition).getString("variation_id")+"ordersn:"+list.get(position).getString("ordersn")+"token:"+getToken());
+            OkHttpUtils.post()
+                    .url(getUrl("/api/shop/qianShou"))
+                    .addParams("type","1")
+                    .addParams("item_id",list.get(position).getJSONArray("items").getJSONObject(itemposition).getString("item_id"))
+                    .addParams("variation_id",list.get(position).getJSONArray("items").getJSONObject(itemposition).getString("variation_id"))
+                    .addParams("ordersn",list.get(position).getString("ordersn"))
+                    .addHeader("token", getToken())
+                    .build()
+                    .execute(new MyCallBack() {
+                        @Override
+                        public void onSuccess(JSONObject result) {
+                            list.clear();
+                            getActiveData();
+                        }
+                    });
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
     private String keyword = "";
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onReceiveMsg(EventMessage message) {
@@ -125,7 +146,7 @@ public class MidOne extends BaseFragment {
         OkHttpUtils.post()
                 .url(getUrl("/api/shop/orderList"))
                 .addParams("page",page+"")
-                .addParams("status","1")
+                .addParams("status","99")
                 .addParams("keyword",keyword)
                 .addParams("page_size",page_num+"")
                 .addHeader("token", getToken())

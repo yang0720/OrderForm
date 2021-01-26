@@ -63,36 +63,24 @@ public abstract class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.Vie
         try {
             holder.tag1.setText(mActiveList.get(position).getString("ordersn"));
             holder.tag2.setText(mActiveList.get(position).getString("shopid"));
-            if (mActiveList.get(position).getString("sj_status").equals("0")){
-                if(mActiveList.get(position).getString("zjs_status").equals("1")){
-                    holder.tag3.setText("待签收");
-                    holder.tag6.setVisibility(View.GONE);
-                }else{
-                    holder.tag3.setText("待发单");
-                    holder.tag6.setVisibility(View.VISIBLE);
-                }
-
-            }else if(mActiveList.get(position).getString("sj_status").equals("1")){
-                holder.tag3.setText("待付款");
-                holder.tag6.setText("付款");
+            if (mActiveList.get(position).getString("zjs_status").equals("0")){
+                holder.tag3.setText("待发单");
                 holder.tag6.setVisibility(View.VISIBLE);
-            }else if(mActiveList.get(position).getString("sj_status").equals("2")){
+            }else if(mActiveList.get(position).getString("zjs_status").equals("1")){
+                holder.tag3.setText("待签收");
+                holder.tag6.setVisibility(View.GONE);
+            }else if(mActiveList.get(position).getString("zjs_status").equals("3")){
                 holder.tag3.setText("待发出");
                 holder.tag6.setVisibility(View.GONE);
-            }else if(mActiveList.get(position).getString("sj_status").equals("3")){
-                holder.tag3.setText("已发出");
+            }else if(mActiveList.get(position).getString("zjs_status").equals("5")){
+                holder.tag3.setText("已完成");
                 holder.tag6.setVisibility(View.GONE);
-            }else if(mActiveList.get(position).getString("sj_status").equals("4")){
-                holder.tag3.setText("已驳回");
-                holder.tag6.setVisibility(View.VISIBLE);
-                holder.tag6.setText("重新发单");
             }
             holder.tag4.setText(TimeUtils.getCurrentTime(mActiveList.get(position).getString("create_time")));
 
             String faStr = mActiveList.get(position).getString("sh_fa_note");
-            String bhStr = (mActiveList.get(position).getString("zjs_bh_note").equals("null")||mActiveList.get(position).getString("zjs_bh_note").equals(""))?"无":mActiveList.get(position).getString("zjs_bh_note");
             String fcStr = (mActiveList.get(position).getString("zjs_fc_note").equals("null")||mActiveList.get(position).getString("zjs_fc_note").equals(""))?"无":mActiveList.get(position).getString("zjs_fc_note");
-            holder.tag5.setText((faStr.equals("null")||faStr.equals(""))?"无":faStr + "||" + bhStr + "||" +fcStr);
+            holder.tag5.setText((faStr.equals("null")||faStr.equals(""))?"无":faStr + "||" +fcStr);
             List<JSONObject> goodsList = new ArrayList<>();
             JSONArray goodsJa = mActiveList.get(position).getJSONArray("items");
             for (int i = 0; i < goodsJa.length(); i++) {

@@ -66,19 +66,21 @@ public class MyLoginActivity extends BaseActivity {
 //                                toast("发送成功");
                                 try {
                                     PrefMethed.settoken(MyLoginActivity.this,result.getJSONObject("data").getJSONObject("userinfo").getString("token"));
-
                                     PrefMethed.setuser_info(MyLoginActivity.this,result.getJSONObject("data").getJSONObject("userinfo").toString());
-
                                     if(result.getJSONObject("data").getJSONObject("userinfo").getString("group_id").equals("1")){
                                         //平台
                                         startActivity(new Intent(MyLoginActivity.this, PlatMainActivity.class));
+                                        finish();
                                     }else if(result.getJSONObject("data").getJSONObject("userinfo").getString("group_id").equals("2")){
                                         //商家
                                         startActivity(new Intent(MyLoginActivity.this, ShopMainActivity.class));
+                                        finish();
                                     }else if(result.getJSONObject("data").getJSONObject("userinfo").getString("group_id").equals("3")){
                                         //中间商
                                         startActivity(new Intent(MyLoginActivity.this, MidMainActivity.class));
+                                        finish();
                                     };
+
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -114,11 +116,37 @@ public class MyLoginActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
 //        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_mylogin);
+        getLoginInfo();
         ButterKnife.bind(this);
         setToolbar("登录");
+
         initWxData();
 //        commit();
         //权限检查和申请
+    }
+
+    private void getLoginInfo() {
+        String userInfo = PrefMethed.getuser_info(MyLoginActivity.this);
+        if(userInfo.isEmpty()||getToken().isEmpty()){
+            return;
+        }
+        try {
+            JSONObject userInfoJo = new JSONObject(userInfo);
+            if(userInfoJo.getString("group_id").equals("1")){
+                //平台
+                startActivity(new Intent(MyLoginActivity.this, PlatMainActivity.class));
+            }else if(userInfoJo.getString("group_id").equals("2")){
+                //商家
+                startActivity(new Intent(MyLoginActivity.this, ShopMainActivity.class));
+            }else if(userInfoJo.getString("group_id").equals("3")){
+                //中间商
+                startActivity(new Intent(MyLoginActivity.this, MidMainActivity.class));
+            }
+            finish();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
     // IWXAPI 是第三方app和微信通信的openApi接口

@@ -35,6 +35,8 @@ public class PlatFirFragment extends BaseFragment {
     TextView tag6;
     @BindView(R.id.tag7)
     TextView tag7;
+    @BindView(R.id.tag8)
+    TextView tag8;
     @Override
     protected int setLayoutResourceID() {
         return R.layout.fragment_firplat;
@@ -49,7 +51,29 @@ public class PlatFirFragment extends BaseFragment {
     @Override
     protected void setUpData() {
         getShopData();
+        getNewsData();
     }
+
+    private void getNewsData() {
+        OkHttpUtils.post()
+                .url(getUrl("/api/user/newslist"))
+                .addHeader("token",getToken())
+                .build()
+                .execute(new MyCallBack() {
+                    @Override
+                    public void onSuccess(JSONObject result) {
+                        try {
+                            if(result.getJSONObject("data").getJSONArray("data").length()>0){
+                                tag8.setText(result.getJSONObject("data").getJSONArray("data").getJSONObject(0).getString("content"));
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+
     @OnClick(R.id.tag2)
     public void tag2(){
         DatePickDialog datePickDialog = new DatePickDialog(getActivity());

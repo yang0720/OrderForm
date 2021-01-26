@@ -3,8 +3,10 @@ package com.qingmaiding.orderform.shop;
 
 import android.content.Intent;
 
+import com.alpamayo.utils.utils.PrefMethed;
 import com.qingmaiding.orderform.BaseFragment;
 import com.qingmaiding.orderform.R;
+import com.qingmaiding.orderform.ui.login.MyLoginActivity;
 
 import butterknife.OnClick;
 
@@ -39,5 +41,11 @@ public class ShopFourFragment extends BaseFragment {
     public void tag4(){
         startActivity(new Intent(getActivity(), MyExpHisActivity.class));
     }
-
+    @OnClick(R.id.logout)
+    public void logout(){
+        PrefMethed.settoken(getActivity(),"");
+        PrefMethed.setuser_info(getActivity(),"");
+        startActivity(new Intent(getActivity(), MyLoginActivity.class));
+        getActivity().finish();
+    }
 }

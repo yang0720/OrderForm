@@ -29,7 +29,7 @@ public abstract class MidOrderAdapter extends RecyclerView.Adapter<MidOrderAdapt
     static class ViewHolder extends RecyclerView.ViewHolder{
         View llClick;
         TextView tag1,tag2,tag3,tag4,tag5;
-        Button tag6,tag7;
+        Button tag6;
         RecyclerView itemRecyclerview;
 
         public ViewHolder (View view)
@@ -42,7 +42,6 @@ public abstract class MidOrderAdapter extends RecyclerView.Adapter<MidOrderAdapt
             tag4 = (TextView) view.findViewById(R.id.tag4);
             tag5 = (TextView) view.findViewById(R.id.tag5);
             tag6 = (Button) view.findViewById(R.id.tag6);
-            tag7 = (Button) view.findViewById(R.id.tag7);
             itemRecyclerview = (RecyclerView)view.findViewById(R.id.itemrecyclerview);
         }
     }
@@ -64,45 +63,28 @@ public abstract class MidOrderAdapter extends RecyclerView.Adapter<MidOrderAdapt
         try {
             holder.tag1.setText(mActiveList.get(position).getString("ordersn"));
             holder.tag2.setText(mActiveList.get(position).getString("shopid"));
-            if (mActiveList.get(position).getString("sj_status").equals("0")){
-                if(mActiveList.get(position).getString("zjs_status").equals("1")){
-                    holder.tag3.setText("待签收");
-                    holder.tag6.setVisibility(View.VISIBLE);
-                    holder.tag7.setVisibility(View.VISIBLE);
-                }else{
-                    holder.tag3.setText("待发单");
-
-                    holder.tag6.setVisibility(View.GONE);
-                    holder.tag7.setVisibility(View.GONE);
-                }
-
-            }else if(mActiveList.get(position).getString("sj_status").equals("1")){
-                holder.tag3.setText("待付款");
+            if (mActiveList.get(position).getString("zjs_status").equals("0")){
+                holder.tag3.setText("未发单");
                 holder.tag6.setVisibility(View.GONE);
-                holder.tag7.setVisibility(View.GONE);
-            }else if(mActiveList.get(position).getString("sj_status").equals("2")){
+            }else if(mActiveList.get(position).getString("zjs_status").equals("1")){
+                holder.tag3.setText("待签收");
+                holder.tag6.setVisibility(View.GONE);
+            }else if(mActiveList.get(position).getString("zjs_status").equals("3")){
                 holder.tag3.setText("待发出");
-                holder.tag7.setVisibility(View.GONE);
                 holder.tag6.setText("发出");
                 holder.tag6.setVisibility(View.VISIBLE);
 
-            }else if(mActiveList.get(position).getString("sj_status").equals("3")){
-                holder.tag3.setText("已发出");
+            }else if(mActiveList.get(position).getString("zjs_status").equals("5")){
+                holder.tag3.setText("已完成");
                 holder.tag6.setVisibility(View.GONE);
-                holder.tag7.setVisibility(View.GONE);
-            }else if(mActiveList.get(position).getString("sj_status").equals("4")){
-                holder.tag3.setText("已驳回");
-                holder.tag6.setVisibility(View.GONE);
-                holder.tag7.setVisibility(View.GONE);
             }
             holder.tag4.setText(TimeUtils.getCurrentTime(mActiveList.get(position).getString("create_time")));
             if (mActiveList.get(position).getString("sh_fa_note").equals("null")){
 
             }else{
                 String faStr = mActiveList.get(position).getString("sh_fa_note");
-                String bhStr = mActiveList.get(position).getString("zjs_bh_note").equals("null")?"无":mActiveList.get(position).getString("zjs_bh_note");
                 String fcStr = mActiveList.get(position).getString("zjs_fc_note").equals("null")?"无":mActiveList.get(position).getString("zjs_fc_note");
-                holder.tag5.setText(faStr.equals("null")?"无":faStr + "||" + bhStr + "||" +fcStr);
+                holder.tag5.setText(faStr.equals("null")?"无":faStr + "||" +fcStr);
             }
             List<JSONObject> goodsList = new ArrayList<>();
             JSONArray goodsJa = mActiveList.get(position).getJSONArray("items");
@@ -117,7 +99,7 @@ public abstract class MidOrderAdapter extends RecyclerView.Adapter<MidOrderAdapt
 
                 @Override
                 public void signOrderSNClick(int itemposition) {
-//                    changeExpNoClick(position,itemposition);
+                    signExpNoClick(position,itemposition);
                 }
             };
             holder.itemRecyclerview.setLayoutManager(new GridLayoutManager(mContext,1));
@@ -136,22 +118,7 @@ public abstract class MidOrderAdapter extends RecyclerView.Adapter<MidOrderAdapt
         holder.tag6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try {
-                    if(mActiveList.get(position).getString("sj_status").equals("0")){
-                        qianshouClick(position);
-                    }else if(mActiveList.get(position).getString("sj_status").equals("2")){
-                        fachuClick(position);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
-        holder.tag7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                bohuiClick(position);
+                fachuClick(position);
             }
         });
     }
@@ -162,9 +129,7 @@ public abstract class MidOrderAdapter extends RecyclerView.Adapter<MidOrderAdapt
 
     public abstract void itemClick(int position);
 
-    public abstract void qianshouClick(int position);
-
-    public abstract void bohuiClick(int position);
-
     public abstract void fachuClick(int position);
+
+    public abstract void signExpNoClick(int position,int itemposition);
 }

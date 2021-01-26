@@ -81,6 +81,7 @@
                 android:layout_marginRight="12dp"
                 android:layout_width="match_parent"
                 android:background="@drawable/def_item"
+                android:visibility="gone"
                 android:gravity="center_vertical"
                 android:layout_height="wrap_content">
 

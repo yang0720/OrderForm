@@ -1,8 +1,6 @@
 package com.qingmaiding.orderform.platform.fragment;
 
 
-import android.widget.EditText;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -12,20 +10,12 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.qingmaiding.orderform.BaseFragment;
 import com.qingmaiding.orderform.R;
-import com.qingmaiding.orderform.shop.EventMessage;
 import com.qingmaiding.orderform.shop.adapter.LafViewPageAdapter;
-import com.qingmaiding.orderform.shop.fragment.ActiveFour;
-import com.qingmaiding.orderform.shop.fragment.ActiveOne;
-import com.qingmaiding.orderform.shop.fragment.ActiveThree;
-import com.qingmaiding.orderform.shop.fragment.ActiveTwo;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 public class PlatSecFragment extends BaseFragment {
 

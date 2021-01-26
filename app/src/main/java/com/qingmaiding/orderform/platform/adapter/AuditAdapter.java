@@ -62,6 +62,13 @@ public abstract class AuditAdapter extends RecyclerView.Adapter<AuditAdapter.Vie
             }else{
                 holder.tag3.setText(mActiveList.get(position).getString("money"));
             }
+            if(mActiveList.get(position).getString("status").equals("1")){
+                holder.tag5.setVisibility(View.VISIBLE);
+                holder.tag6.setVisibility(View.VISIBLE);
+            }else{
+                holder.tag5.setVisibility(View.GONE);
+                holder.tag6.setVisibility(View.GONE);
+            }
             if(mActiveList.get(position).getString("type").equals("null")){
                 holder.tag4.setText("无");
             }else{

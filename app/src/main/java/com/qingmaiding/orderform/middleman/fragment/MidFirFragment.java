@@ -19,7 +19,8 @@ import java.util.Date;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class MidFirFragment extends BaseFragment {
+public class
+MidFirFragment extends BaseFragment {
     @BindView(R.id.tag1)
     TextView tag1;
     @BindView(R.id.tag2_text)
@@ -30,6 +31,8 @@ public class MidFirFragment extends BaseFragment {
     TextView tag4;
     @BindView(R.id.tag5)
     TextView tag5;
+    @BindView(R.id.tag8)
+    TextView tag8;
     @Override
     protected int setLayoutResourceID() {
         return R.layout.fragment_firmid;
@@ -42,7 +45,7 @@ public class MidFirFragment extends BaseFragment {
 
     @Override
     protected void setUpData() {
-
+        getNewsData();
     }
 
     @Override
@@ -116,6 +119,25 @@ public class MidFirFragment extends BaseFragment {
                             tag1.setText(result.getJSONObject("data").getString("score"));
                             tag4.setText(result.getJSONObject("data").getString("count_chu"));
                             tag5.setText(result.getJSONObject("data").getString("count_wchu"));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+    private void getNewsData() {
+        OkHttpUtils.post()
+                .url(getUrl("/api/user/newslist"))
+                .addHeader("token",getToken())
+                .build()
+                .execute(new MyCallBack() {
+                    @Override
+                    public void onSuccess(JSONObject result) {
+                        try {
+                            if(result.getJSONObject("data").getJSONArray("data").length()>0){
+                                tag8.setText(result.getJSONObject("data").getJSONArray("data").getJSONObject(0).getString("content"));
+                            }
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
